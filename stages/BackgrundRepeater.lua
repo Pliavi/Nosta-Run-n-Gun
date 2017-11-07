@@ -4,8 +4,8 @@ local BG = class'Background'
 function BG:initialize(filename)
     self.bg = love.graphics.newImage(filename) 
     
-    self.bgX1 = 0
-    self.bgX2 = love.graphics.getWidth()
+    self.bgX[1] = 0
+    self.bgX[2] = love.graphics.getWidth()
 
     -- Used to throw the BG to front to make an infinite background --
     -- Warning: The background image should have an pixel perfect horizontal loop --
@@ -13,8 +13,8 @@ function BG:initialize(filename)
 end
 
 function BG:update()
-    if self.bgX1 < 0 then
-        self.bgX1 = self.bgXReset
+    if self.bgX[1] < 0 then
+        self.bgX[1] = self.bgXReset
     end
 
     if self.bgX2 < 0 then
@@ -27,6 +27,7 @@ end
 
 function BG:draw()
     love.graphics.setBackgroundColor(255, 175, 175)
+    
     love.graphics.draw(self.bg, self.bgX1, 0, 0)
     love.graphics.draw(self.bg, self.bgX2, 0, 0)
 end
